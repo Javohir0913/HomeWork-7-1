@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	About
+{% endblock %}
+
+{% block top_link %}
+    {% for continent in continents %}
+    	<li><a class="dropdown-item" href="{% url 'continent_show' continent.id %}">{{ continent.continent_name }}</a></li>
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <h1>Saytmizda Qit'alar haqida malumot olishigiz mumkin !</h1>
+    <p>saytmizda siz bilmagan malumotlarni bilishgiz imkoni bor</p><br>
+    {% for continent in continents %}
+        <a style="text-decoration: none" href="{% url 'continent_show' continent.id %}"><h3>{{ continent.continent_name }}</h3>
+            {{ continent.continent_annotations }}.<br>
+            haqida batafsil malumot olmoqchi bolsagiz shu yerga bosing !</a>
+        <br>
+        <br>
+    {% endfor %}
+
+{% endblock %}

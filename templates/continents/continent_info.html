@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ continent.continent_name }}
+{% endblock %}
+
+{% block top_link %}
+    {% for continent in continents %}
+    	<li><a class="dropdown-item" href="{% url 'continent_show' continent.id %}">{{ continent.continent_name }}</a></li>
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3" style="width: 50%;">
+      <div class="card" style="width:500px">
+        <img class="card-img-top" src="{% static continent.continent_image %}" alt="Card image" style="width:100%">
+        <div class="card-body">
+            <h5><a href="{% url 'edit_continent' continent.id %}">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'delete_continent' continent.id %}">Delete</a></h5>
+                <br>
+          <h4 class="card-title">{{ continent.continent_name }}</h4>
+          <p class="card-text">{{ continent.continent_description }}</p>
+<div class="container mt-3">
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header">
+        <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+          Country
+        </a>
+      </div>
+      <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+                <p>
+                    {% for con in countries %}
+                        {{ con.country_name }},
+                    {% endfor %}
+                </p>
+
+            <br>
+            <p>
+                <a href="{% url 'edit_country' continent.id %}">edit_country</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'delete_country' continent.id %}">delete_country</a>
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

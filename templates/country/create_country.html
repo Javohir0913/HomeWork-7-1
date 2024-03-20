@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Create Country
+{% endblock %}
+
+{% block top_link %}
+    {% for continent in all_continents %}
+    	<li>
+            <a class="dropdown-item" href="{% url 'continent_show' continent.id %}">{{ continent.continent_name }}</a>
+        </li>
+    {% endfor %}
+{% endblock %}
+
+
+{% block content %}
+	<form action="" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <p>
+                <label for="name">Country name: </label>
+                <input type="text" name="name" required>
+            </p>
+            <p>
+                <label for="continent">Continent: </label>
+                <select name="continent">
+                    {% for con in all_continents %}
+                        <option>{{ con.continent_name }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+        </fieldset>
+        <input type="submit" value="Create Theme">
+    </form>
+{% endblock %}

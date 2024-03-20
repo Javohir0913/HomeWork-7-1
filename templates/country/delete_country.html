@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Delete
+{% endblock %}
+
+{% block top_link %}
+    {% for continent in continents %}
+    	<li>
+            <a class="dropdown-item" href="{% url 'continent_show' continent.id %}">{{ continent.continent_name }}</a>
+        </li>
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+	<h1>{{ continent }}</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <h4>Continent:</h4>
+            <p>{{ continent }}ni o'chirmoqchimisiz ?</p>
+        </fieldset>
+            <input type="submit" value="Delete Theme">
+    </form>
+{% endblock %}
