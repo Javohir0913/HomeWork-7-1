@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Continent, Country
-from .forms import ContinentForm
+from .forms import ContinentForm, CountryForm
 
 
 # Create your views here.
@@ -100,12 +100,14 @@ def edit_country(request, pk):
 
 
 def delete_country(request, pk):
-    this_country = get_object_or_404(Country, pk=pk)
-    all_continents = Continent.objects.all()
+    this_country = get_object_or_404(Continent, pk=pk)
     if request.method == 'POST':
         this_country.delete()
+        messages.success(request, 'Continent deleted successfully.')
         return redirect('index')
     else:
+        all_continents = Continent.objects.all()
+        all_county = Country.objects.filter(country_continent=this_country.id)
         return render(request, 'country/delete_country.html',
-                      context={'continent': this_country, 'continents': all_continents})
+                      context={'all_county': all_county, 'continents': all_continents})
 

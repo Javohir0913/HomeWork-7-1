@@ -20,7 +20,7 @@ urlpatterns = [
     path('<int:pk>/', continent_show, name='continent_show'),
     path('edit/<int:pk>/', edit_continent, name='edit_continent'),
     path('delete/<int:pk>/', delete_continent, name='delete_continent'),
-    path('country/', create_country, name='create_country'),
-    path('edit_county/<int:pk>/', edit_country, name='edit_country'),
-    path('delete_county/<int:pk>/', delete_country, name='delete_country'),
+    # path('country/', create_country, name='create_country'),
+    # path('edit_county/<int:pk>/', edit_country, name='edit_country'),
+    # path('delete_county/<int:pk>/', delete_country, name='delete_country'),
 ]
